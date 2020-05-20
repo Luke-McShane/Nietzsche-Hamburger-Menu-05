@@ -1,0 +1,96 @@
+:root {
+  --primary-colour: rgba(36, 26, 37, 0.75);
+  --secondary-colour: rgba(187, 57, 48);
+  /* --overlay-colour: rgba(24, 39, 51, 0.95); */
+  --overlay-colour: rgba(1, 1, 1, 0.9);
+  --menu-text-colour: rgba(229, 148, 0, 0.9);
+  --button-background: rgba(0, 0, 0, 1);
+  --transition-speed: 0.75s;
+  /* --index-colour: rgba(187, 57, 48, 0.5);
+  --about-colour: rgba(183, 197, 31, 0.5);
+  --about-colour: rgba(227, 180, 76, 0.5);
+  --services-colour: rgba(231, 224, 177, 0.5);
+  --contact-colour: rgba(80, 121, 132, 0.5); */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Goudy Bookletter 1911', sans-serif;
+  line-height: 1.4;
+}
+
+.showcase {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--primary-colour);
+}
+
+/* .showcase.index { background: var(--index-colour); }
+.showcase.about { background: var(--about-colour); }
+.showcase.services { background: var(--services-colour); }
+.showcase.contact { background: var(--contact-colour); } */
+
+.showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.showcase.index::before { background: url(/img/index.jpg) no-repeat center center/cover; }
+.showcase.about::before { background: url(/img/about.jpg) no-repeat center center/cover; }
+.showcase.services::before { background: url(/img/services.jpg) no-repeat center center/cover; }
+.showcase.contact::before { background: url(/img/contact.jpg) no-repeat center center/cover; }
+
+.showcase .container {
+  max-width: 960px;
+  height: 100%;
+}
+
+.showcase .showcase-container {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.showcase .showcase-container h1 {
+  font-size: 3rem;
+  padding: 3rem;
+  color: rgba(187, 57, 48);
+}
+
+.showcase .showcase-container p {
+  font-size: 1.2rem;
+}
+
+.showcase .showcase-container a {
+  margin-top: 3rem;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  background: var(--button-background);
+  color: var(--secondary-colour);
+  border-radius: 6px;
+  font-size: 1.4rem;
+  transition: all 450ms ease;
+}
+
+.showcase .showcase-container a:hover {
+  background: var(--secondary-colour);
+  color: var(--button-background);
+}
