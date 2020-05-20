@@ -1,3 +1,9 @@
+/* We want to position this fixed so that, if the user were able to scroll, the menu would still
+  stay fixed in place - we want this effect because we want to create the illusion that the menu
+  is separate from the core content of each page.
+  We set the border radius to 50% so that we have a nice scaling effect whereby the menu appears to
+  open out into a circle
+  We also set the z-index here so the menu appears over the page content. */
 .menu-wrap {
   position: fixed;
   top: 0;
@@ -8,6 +14,10 @@
   border-radius: 50%;
 }
 
+/* We want the checkbox (the element the #toggle pertains to) to appear invisible to create the illusion
+  that the user is actually clicking the div which hosts the hamburger menu 'icon' itself.
+  We also add a z-index of 2 so that the checkbox is clickable for the user due to being placed on top of the
+  overlay */
 .menu-wrap #toggle {
   position: absolute;
   top: 0;
@@ -19,6 +29,7 @@
   z-index: 2;
 }
 
+/* This div will host the hamburger menu 'icon' */
 .menu-wrap .hamburger {
   display: flex;
   justify-content: center;
@@ -31,6 +42,8 @@
   z-index: 1;
 }
 
+/* Creating the middle layer of the hamburger. Positioned relatively so we can absolutely position
+  the top and bottom layers */
 .menu-wrap .hamburger .hamburger-layer {
   position: relative;
   top: 0;
@@ -38,16 +51,18 @@
   background: #fff;
   height: 4px;
   width: 100%;
-  transform: rotate(0deg);
   transition: all 400ms ease;
 }
 
+/* Here we create the top and bottom layers of the hamburger menu
+  They are positioned absolutely because they must be relative to the middle layer of the hamburger
+  so we can easily translate the layers to their appropriate positions */
 .menu-wrap .hamburger .hamburger-layer::before,
 .menu-wrap .hamburger .hamburger-layer::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
-  content: '';
   background: #fff;
   height: 4px;
   width: 100%;
@@ -58,6 +73,9 @@
   transform: translateY(15px);
 }
 
+/* We must make this element display as flex in order for all the menu content to display
+  at the center of the user's screen. If we do not do this, then the elements will be greatly offset
+  due to the size of the overlay that the menu accomodates */
 .menu-wrap .menu {
   width: 100%;
   height: 100%;
@@ -80,6 +98,8 @@
   background: var(--overlay-colour);
 }
 
+/* We set the initial styling so the text is invisible, for we do not want the text to be
+  showing when the menu is not set to be shown */
 .menu-wrap .menu .overlay .text-container {
   opacity: 0;
   transition: opacity 400ms ease 300ms;
@@ -93,6 +113,7 @@
   margin-top: 2rem;
 }
 
+/* We set a transition on the colour so that the colour is applied in a smooth manner */
 .menu-wrap .menu .text-container ul li a {
   text-decoration: none;
   color: #fff;
@@ -104,23 +125,31 @@
   color: var(--menu-text-colour);
 }
 
+/* Here we use the tilde to select an element that is a sibling of another element.
+  This sibling doesn't have to be adjacent, but simply has to be on the same level as the element
+  we are referencing.
+  So here we are saying that when the toggle element is checked, select the hamburger-layer and
+  apply the following style to it */
+.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer {
+  transform: rotate(405deg);
+}
+
+/* We set two different transforms. The first transform (above) applies to all three sections of the hamburger.
+  The second transform applies to the two before and after layers of the hamburger, making the hamburger spin more.
+  Being 270deg, this makes the two before and after elements overlap and be perpendicular to the original middle
+  layer of the hamburger, making a cross appear  */
+.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer::before,
+.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer::after {
+  transform: rotate(270deg)
+}
+
+/* These two will hide/show the entire menu 
+  We have both changes to the opacity and the scale because the scale change actually brings the overlay
+  into focus, whereas the opacity brings the list elements into focus after a delay that has been set above*/
 .menu-wrap #toggle:checked ~ .menu {
   transform: scale(1);
 }
 
 .menu-wrap #toggle:checked ~ .menu .overlay .text-container {
   opacity: 1;
-}
-
-.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer {
-  transform: rotate(405deg);
-}
-
-.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer::before,
-.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer::after {
-  transform: rotate(540deg)
-}
-
-.menu-wrap #toggle:checked ~ .hamburger .hamburger-layer::after {
-  transform: rotate(270deg)
 }

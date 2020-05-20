@@ -1,29 +1,29 @@
+/* Creating some variables that will be used as the colour pallete for the website */
 :root {
   --primary-colour: rgba(36, 26, 37, 0.75);
   --secondary-colour: rgba(187, 57, 48);
-  /* --overlay-colour: rgba(24, 39, 51, 0.95); */
   --overlay-colour: rgba(1, 1, 1, 0.9);
   --menu-text-colour: rgba(229, 148, 0, 0.9);
   --button-background: rgba(0, 0, 0, 1);
-  --transition-speed: 0.75s;
-  /* --index-colour: rgba(187, 57, 48, 0.5);
-  --about-colour: rgba(183, 197, 31, 0.5);
-  --about-colour: rgba(227, 180, 76, 0.5);
-  --services-colour: rgba(231, 224, 177, 0.5);
-  --contact-colour: rgba(80, 121, 132, 0.5); */
 }
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Using a font from Google Fonts */
 body {
   font-family: 'Goudy Bookletter 1911', sans-serif;
   line-height: 1.4;
 }
 
+/* We set the position to relative as we want to create an overlay, which will be placed absolutely,
+  and thus relative to its parent, which, in this case, is this showcase element
+  We make the overflow hidden to prevent the user to scroll down the page, which is a desirable
+  feature due to the nature of this website */
 .showcase {
   position: relative;
   top: 0;
@@ -34,11 +34,7 @@ body {
   background: var(--primary-colour);
 }
 
-/* .showcase.index { background: var(--index-colour); }
-.showcase.about { background: var(--about-colour); }
-.showcase.services { background: var(--services-colour); }
-.showcase.contact { background: var(--contact-colour); } */
-
+/* We make the z-index -1 to ensure that the content of the index page is placed in front of the overlay */
 .showcase::before {
   content: '';
   position: absolute;
@@ -49,6 +45,7 @@ body {
   z-index: -1;
 }
 
+/* We have above created the basis of the overlay, so here we can add the background image for each page's overlay */
 .showcase.index::before { background: url(/img/index.jpg) no-repeat center center/cover; }
 .showcase.about::before { background: url(/img/about.jpg) no-repeat center center/cover; }
 .showcase.services::before { background: url(/img/services.jpg) no-repeat center center/cover; }
