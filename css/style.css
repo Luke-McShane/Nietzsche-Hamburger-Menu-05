@@ -46,10 +46,10 @@ body {
 }
 
 /* We have above created the basis of the overlay, so here we can add the background image for each page's overlay */
-.showcase.index::before { background: url(img/index.jpg) no-repeat center center/cover; }
-.showcase.about::before { background: url(img/about.jpg) no-repeat center center/cover; }
-.showcase.services::before { background: url(img/services.jpg) no-repeat center center/cover; }
-.showcase.contact::before { background: url(img/contact.jpg) no-repeat center center/cover; }
+.showcase.index::before { background: url(../img/index.jpg) no-repeat center center/cover; }
+.showcase.about::before { background: url(../img/about.jpg) no-repeat center center/cover; }
+.showcase.services::before { background: url(../img/services.jpg) no-repeat center center/cover; }
+.showcase.contact::before { background: url(../img/contact.jpg) no-repeat center center/cover; }
 
 .showcase .container {
   max-width: 960px;
